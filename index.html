@@ -417,6 +417,83 @@
     font-weight:600; color:var(--hunter-green); text-transform:uppercase; letter-spacing:.05em;
   }
 
+  /* ===== CATERING ===== */
+  .catering{
+    background:var(--hunter-green);
+    position:relative;
+    overflow:hidden;
+  }
+  .catering::before{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(ellipse 800px 500px at 90% 10%, rgba(16,40,32,0.35), transparent 60%);
+  }
+  .catering .section-head h2, .catering .section-head p{color:var(--cream);}
+  .catering .section-head p{opacity:.85;}
+  .catering .section-head .tag{color:var(--khaki);}
+  .catering-grid{
+    position:relative; z-index:1;
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(210px,1fr));
+    gap:1.4rem;
+    margin-bottom:2.6rem;
+  }
+  .catering-item{
+    background:rgba(244,239,226,0.08);
+    border:1px solid rgba(244,239,226,0.18);
+    border-radius:16px;
+    padding:1.8rem 1.5rem;
+    display:flex; flex-direction:column; gap:.8rem;
+    transition:transform .25s ease, background .25s ease;
+  }
+  .catering-item:hover{
+    transform:translateY(-4px);
+    background:rgba(244,239,226,0.14);
+  }
+  .catering-item h4{
+    font-family:'Fraunces', serif;
+    font-size:1.2rem;
+    color:var(--cream);
+    font-weight:600;
+  }
+  .catering-item p{
+    font-size:.85rem;
+    color:var(--khaki-light);
+    opacity:.8;
+    line-height:1.5;
+  }
+  .catering-cta{
+    position:relative; z-index:1;
+    display:flex; align-items:center; gap:1rem; flex-wrap:wrap;
+  }
+  .catering-cta p{
+    color:var(--khaki-light);
+    font-size:.95rem;
+    opacity:.85;
+    max-width:420px;
+  }
+  .catering-gallery{
+    position:relative; z-index:1;
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(180px,1fr));
+    gap:1rem;
+    margin-bottom:2.6rem;
+  }
+  .gallery-photo{
+    aspect-ratio:4/3;
+    border-radius:14px;
+    overflow:hidden;
+    background:rgba(244,239,226,0.08);
+    border:1px solid rgba(244,239,226,0.18);
+  }
+  .gallery-photo img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .4s ease;
+  }
+  .gallery-photo:hover img{transform:scale(1.06);}
+
   /* ===== CTA / CONTACT ===== */
   .contact{
     background:var(--dark-green);
@@ -465,6 +542,42 @@
 
   .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
   .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ===== PHOTO POPUP (LIGHTBOX) ===== */
+  .card-photo .slide img, .gallery-photo img{cursor:zoom-in;}
+  .lightbox{
+    position:fixed; inset:0;
+    background:rgba(16,40,32,0.92);
+    display:none;
+    align-items:center; justify-content:center;
+    z-index:999;
+    padding:5vh 5vw;
+    opacity:0;
+    transition:opacity .25s ease;
+  }
+  .lightbox.active{display:flex; opacity:1;}
+  .lightbox img{
+    max-width:100%; max-height:100%;
+    border-radius:14px;
+    box-shadow:0 30px 60px -15px rgba(0,0,0,0.5);
+    transform:scale(.9);
+    transition:transform .3s ease;
+  }
+  .lightbox.active img{transform:scale(1);}
+  .lightbox-close{
+    position:absolute; top:1.6rem; right:1.6rem;
+    width:44px; height:44px;
+    border-radius:50%;
+    border:none;
+    background:rgba(244,239,226,0.15);
+    color:var(--khaki-light);
+    font-size:1.6rem;
+    line-height:1;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:background .2s ease;
+  }
+  .lightbox-close:hover{background:rgba(244,239,226,0.3);}
 </style>
 </head>
 <body>
@@ -475,6 +588,7 @@
     <ul>
       <li><a href="#tentang">Tentang</a></li>
       <li><a href="#katalog">Katalog</a></li>
+      <li><a href="#catering">Catering</a></li>
     </ul>
   </div>
   <a href="https://wa.me/6281554658964?text=dellamuda.admin" target="_blank" rel="noopener" class="cta">Pesan Sekarang</a>
@@ -501,7 +615,7 @@
     <div class="about-copy reveal">
       <p>Della Muda lahir dari dapur kecil di kaki gunung Pujon — setiap batch digoreng dalam jumlah terbatas, langsung dikemas selagi masih hangat, bukan stok yang menumpuk lama di gudang.</p>
       <p>Bahan-bahannya kami ambil dari kebun sekitar: kentang, pisang, apel, ubi, dan sayuran segar hasil tani lokal — diolah jadi keripik, carang mas, dan camilan renyah lain yang rasanya jujur, apa adanya.</p>
-      <p>Cari oleh-oleh khas Malang atau stok camilan buat di rumah? Katalog di bawah ini isinya semua favorit yang kami punya.</p>
+      <p>Cari oleh-oleh khas Malang atau stok camilan buat di rumah? Katalog di bawah ini isinya semua favorit yang kami punya minggu ini.</p>
     </div>
     <div class="about-visual reveal">
       <img class="about-photo" src="foto/kebun-pujon.jpg" alt="Kebun dan pegunungan di Pujon, Malang" onerror="this.style.display='none'">
@@ -512,7 +626,7 @@
         <div style="background:#8A6240"></div>
         <div style="background:#4D2D18"></div>
       </div>
-      <div class="card-label">dari kebun Pujon<br>ke wajan panas<span>Diolah fresh setiap hari</span></div>
+      <div class="card-label">dari kebun Pujon<br>ke wajan panas<span>Dikelilingi kebun dan pegunungan Malang</span></div>
     </div>
   </div>
 </section>
@@ -528,21 +642,21 @@
 
   <div class="product-grid">
 
-    <div class="card reveal" data-name="Keripik Kentang">
-      <div class="card-photo" data-emoji="🥔" data-label="FOTO KERIPIK KENTANG">
+    <div class="card reveal" data-name="Kennak Kres">
+      <div class="card-photo" data-emoji="🥔" data-label="FOTO KENNAK KRES">
         <div class="slides">
-          <div class="slide"><img src="foto/keripik-kentang-1.jpg" alt="Keripik Kentang foto 1"></div>
-          <div class="slide"><img src="foto/keripik-kentang-2.jpg" alt="Keripik Kentang foto 2"></div>
-          <div class="slide"><img src="foto/keripik-kentang-3.jpg" alt="Keripik Kentang foto 3"></div>
+          <div class="slide"><img src="foto/kennak-kres-1.jpg" alt="Kennak Kres foto 1"></div>
+          <div class="slide"><img src="foto/kennak-kres-2.jpg" alt="Kennak Kres foto 2"></div>
+          <div class="slide"><img src="foto/kennak-kres-3.jpg" alt="Kennak Kres foto 3"></div>
         </div>
-        <div class="placeholder"><span class="emoji">🥔</span><small>FOTO KERIPIK KENTANG</small></div>
+        <div class="placeholder"><span class="emoji">🥔</span><small>FOTO KENNAK KRES</small></div>
         <button class="nav-arrow nav-prev" aria-label="Foto sebelumnya">‹</button>
         <button class="nav-arrow nav-next" aria-label="Foto berikutnya">›</button>
         <div class="dots"></div>
         <div class="price-tag">20K</div>
       </div>
       <div class="card-body">
-        <h4>Keripik Kentang</h4>
+        <h4>Kennak Kres</h4>
         <div class="desc">Gurih renyah, diiris tipis dan digoreng kering.</div>
         <div class="card-footer">
           <div class="price">Rp 20.000<small>per bungkus</small></div>
@@ -561,13 +675,13 @@
         <button class="nav-arrow nav-prev" aria-label="Foto sebelumnya">‹</button>
         <button class="nav-arrow nav-next" aria-label="Foto berikutnya">›</button>
         <div class="dots"></div>
-        <div class="price-tag">15K</div>
+        <div class="price-tag">17K</div>
       </div>
       <div class="card-body">
         <h4>Keripik Pisang</h4>
         <div class="desc">Manis alami, tekstur renyah dari pisang pilihan.</div>
         <div class="card-footer">
-          <div class="price">Rp 15.000<small>per bungkus</small></div>
+          <div class="price">Rp 17.000<small>per bungkus</small></div>
         </div>
       </div>
     </div>
@@ -627,13 +741,13 @@
         <button class="nav-arrow nav-prev" aria-label="Foto sebelumnya">‹</button>
         <button class="nav-arrow nav-next" aria-label="Foto berikutnya">›</button>
         <div class="dots"></div>
-        <div class="price-tag">18K</div>
+        <div class="price-tag">20K</div>
       </div>
       <div class="card-body">
         <h4>Kembang Goyang</h4>
         <div class="desc">Kue tradisional berbentuk bunga, renyah dan manis.</div>
         <div class="card-footer">
-          <div class="price">Rp 18.000<small>per bungkus</small></div>
+          <div class="price">Rp 20.000<small>per bungkus</small></div>
         </div>
       </div>
     </div>
@@ -649,13 +763,13 @@
         <button class="nav-arrow nav-prev" aria-label="Foto sebelumnya">‹</button>
         <button class="nav-arrow nav-next" aria-label="Foto berikutnya">›</button>
         <div class="dots"></div>
-        <div class="price-tag">15K</div>
+        <div class="price-tag">17K</div>
       </div>
       <div class="card-body">
         <h4>Tak Tak Kres</h4>
         <div class="desc">Basreng sayur pedas gurih, camilan kekinian favorit.</div>
         <div class="card-footer">
-          <div class="price">Rp 15.000<small>per bungkus</small></div>
+          <div class="price">Rp 17.000<small>per bungkus</small></div>
         </div>
       </div>
     </div>
@@ -685,6 +799,57 @@
   </div>
 </section>
 
+<section class="catering" id="catering">
+  <div class="section-head reveal">
+    <div>
+      <span class="tag">Layanan Catering</span>
+      <h2>Della Muda juga terima pesanan catering</h2>
+    </div>
+    <p>Buat acara keluarga, kantor, atau hajatan — kami siap bantu urusan konsumsi dari nasi sampai lauk.</p>
+  </div>
+
+  <div class="catering-grid">
+    <div class="catering-item reveal">
+      <h4>Nasi Prasmanan</h4>
+      <p>Menu prasmanan lengkap untuk acara dengan tamu banyak, disajikan siap santap.</p>
+    </div>
+    <div class="catering-item reveal">
+      <h4>Nasi Kotak</h4>
+      <p>Paket nasi kotak rapi dan praktis, cocok untuk acara kantor atau pengajian.</p>
+    </div>
+    <div class="catering-item reveal">
+      <h4>Nasi Tumpeng</h4>
+      <p>Tumpeng lengkap dengan lauk pendamping untuk momen syukuran dan perayaan.</p>
+    </div>
+    <div class="catering-item reveal">
+      <h4>Bakso</h4>
+      <p>Bakso hangat untuk melengkapi acara kamu, bisa disesuaikan jumlah porsinya.</p>
+    </div>
+  </div>
+
+  <div class="catering-gallery">
+    <div class="gallery-photo"><img src="foto/catering-1.jpg" alt="Foto catering Della Muda" onerror="this.closest('.gallery-photo').style.display='none'"></div>
+    <div class="gallery-photo"><img src="foto/catering-2.jpg" alt="Foto catering Della Muda" onerror="this.closest('.gallery-photo').style.display='none'"></div>
+    <div class="gallery-photo"><img src="foto/catering-3.jpg" alt="Foto catering Della Muda" onerror="this.closest('.gallery-photo').style.display='none'"></div>
+    <div class="gallery-photo"><img src="foto/catering-4.jpg" alt="Foto catering Della Muda" onerror="this.closest('.gallery-photo').style.display='none'"></div>
+    <div class="gallery-photo"><img src="foto/catering-5.jpg" alt="Foto catering Della Muda" onerror="this.closest('.gallery-photo').style.display='none'"></div>
+    <div class="gallery-photo"><img src="foto/catering-6.jpg" alt="Foto catering Della Muda" onerror="this.closest('.gallery-photo').style.display='none'"></div>
+    <div class="gallery-photo"><img src="foto/catering-7.jpg" alt="Foto catering Della Muda" onerror="this.closest('.gallery-photo').style.display='none'"></div>
+    <div class="gallery-photo"><img src="foto/catering-8.jpg" alt="Foto catering Della Muda" onerror="this.closest('.gallery-photo').style.display='none'"></div>
+    <div class="gallery-photo"><img src="foto/catering-9.jpg" alt="Foto catering Della Muda" onerror="this.closest('.gallery-photo').style.display='none'"></div>
+    <div class="gallery-photo"><img src="foto/catering-10.jpg" alt="Foto catering Della Muda" onerror="this.closest('.gallery-photo').style.display='none'"></div>
+    <div class="gallery-photo"><img src="foto/catering-11.jpg" alt="Foto catering Della Muda" onerror="this.closest('.gallery-photo').style.display='none'"></div>
+    <div class="gallery-photo"><img src="foto/catering-12.jpg" alt="Foto catering Della Muda" onerror="this.closest('.gallery-photo').style.display='none'"></div>
+    <div class="gallery-photo"><img src="foto/catering-13.jpg" alt="Foto catering Della Muda" onerror="this.closest('.gallery-photo').style.display='none'"></div>
+    <div class="gallery-photo"><img src="foto/catering-14.jpg" alt="Foto catering Della Muda" onerror="this.closest('.gallery-photo').style.display='none'"></div>
+  </div>
+
+  <div class="catering-cta reveal">
+    <a class="btn-primary" href="https://wa.me/6281554658964?text=dellamuda.admin" target="_blank" rel="noopener">Tanya Paket Catering</a>
+    <p>Chat kami untuk info harga, minimal pesanan, dan jadwal ketersediaan.</p>
+  </div>
+</section>
+
 <section class="contact" id="kontak">
   <span class="tag">Pesan Sekarang</span>
   <h2>Mau pesan berapa bungkus hari ini?</h2>
@@ -700,6 +865,11 @@
   <div class="logo">della muda</div>
   <div class="fnote">Sobo, Madiredo, Pujon, Malang Regency, East Java 65391</div>
 </footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Tutup">×</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
 
 <script>
   // scroll reveal
@@ -782,6 +952,32 @@
   }
 
   document.querySelectorAll('.card-photo').forEach(setupCarousel);
+
+  // ===== photo popup (lightbox) =====
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxClose = document.querySelector('.lightbox-close');
+
+  function openLightbox(src, alt){
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.card-photo .slide img, .gallery-photo img').forEach(img=>{
+    img.addEventListener('click', ()=>{
+      if(img.naturalWidth > 0){ openLightbox(img.src, img.alt); }
+    });
+  });
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
 </script>
 
 </body>
