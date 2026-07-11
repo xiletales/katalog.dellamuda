@@ -573,6 +573,23 @@
   }
   .gallery-photo:hover img{transform:scale(1.06);}
 
+  @media(max-width:700px){
+    .catering-gallery{
+      display:flex;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+      padding-bottom:.4rem;
+      margin-bottom:2rem;
+    }
+    .catering-gallery::-webkit-scrollbar{display:none;}
+    .gallery-photo{
+      flex:0 0 82%;
+      scroll-snap-align:center;
+    }
+  }
+
   /* ===== CTA / CONTACT ===== */
   .contact{
     background:var(--dark-green);
