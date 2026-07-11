@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>della muda — katalog camilan rumahan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --dark-green:#102820;
+    --hunter-green:#4C6444;
+    --khaki:#CABA9C;
+    --raw-umber:#8A6240;
+    --cafe-noir:#4D2D18;
+    --khaki-light:#E4DCC9;
+    --cream:#F4EFE2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--cafe-noir);
+    font-family:'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+
+  /* ===== NAV ===== */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 6vw;
+    background:rgba(16,40,32,0.92);
+    backdrop-filter:blur(6px);
+    transition:padding .3s ease;
+  }
+  nav .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.4rem;
+    font-weight:700;
+    color:#fff;
+    letter-spacing:-0.02em;
+  }
+  nav .logo span{color:#fff;}
+  nav ul{display:flex; gap:2.2rem; list-style:none;}
+  nav ul a{
+    color:var(--khaki-light);
+    font-size:.88rem;
+    font-weight:500;
+    letter-spacing:.02em;
+    opacity:.85;
+    transition:opacity .2s;
+  }
+  nav ul a:hover{opacity:1;}
+  nav .cta{
+    background:var(--raw-umber);
+    color:var(--cream);
+    padding:.6rem 1.3rem;
+    border-radius:100px;
+    font-size:.85rem;
+    font-weight:600;
+  }
+  .nav-links, .nav-cta{display:flex; align-items:center;}
+  @media(max-width:820px){
+    nav ul{display:none;}
+  }
+
+  /* ===== HERO ===== */
+  header.hero{
+    position:relative;
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse 900px 500px at 85% 15%, rgba(138,98,64,0.35), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 10% 90%, rgba(76,100,68,0.5), transparent 60%),
+      var(--dark-green);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:0 6vw;
+    overflow:hidden;
+  }
+  header.hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(115deg, rgba(202,186,156,0.05) 0px, rgba(202,186,156,0.05) 1px, transparent 1px, transparent 90px);
+    pointer-events:none;
+  }
+  .hero-eyebrow{
+    color:var(--raw-umber);
+    font-size:.85rem;
+    font-weight:700;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    margin-bottom:1.4rem;
+    opacity:0;
+    animation:riseIn .8s .1s ease forwards;
+  }
+  .hero h1{
+    color:var(--cream);
+    font-size:clamp(3.2rem, 10vw, 8rem);
+    line-height:.92;
+    font-weight:600;
+    opacity:0;
+    animation:riseIn .9s .25s ease forwards;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--khaki);
+  }
+  .hero p.lede{
+    max-width:520px;
+    margin-top:1.8rem;
+    color:var(--khaki-light);
+    font-size:1.08rem;
+    line-height:1.65;
+    opacity:0;
+    animation:riseIn .9s .4s ease forwards;
+  }
+  .hero-actions{
+    margin-top:2.6rem;
+    display:flex;
+    gap:1rem;
+    flex-wrap:wrap;
+    opacity:0;
+    animation:riseIn .9s .55s ease forwards;
+  }
+  .btn-primary{
+    background:var(--khaki);
+    color:var(--cafe-noir);
+    padding:.95rem 1.8rem;
+    border-radius:100px;
+    font-weight:700;
+    font-size:.95rem;
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    transition:transform .25s ease, background .25s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px); background:#fff;}
+  .btn-ghost{
+    border:1px solid rgba(202,186,156,0.4);
+    color:var(--khaki-light);
+    padding:.95rem 1.8rem;
+    border-radius:100px;
+    font-weight:600;
+    font-size:.95rem;
+    transition:border-color .25s ease, background .25s ease;
+  }
+  .btn-ghost:hover{border-color:var(--khaki); background:rgba(202,186,156,0.08);}
+
+  .hero-stats{
+    position:absolute;
+    right:6vw;
+    bottom:3.2rem;
+    display:flex;
+    gap:2.6rem;
+    opacity:0;
+    animation:riseIn .9s .7s ease forwards;
+  }
+  .hero-stats div{text-align:left;}
+  .hero-stats .num{
+    font-family:'Fraunces', serif;
+    font-size:2rem;
+    color:var(--khaki);
+    font-weight:600;
+  }
+  .hero-stats .label{
+    font-size:.75rem;
+    color:var(--khaki-light);
+    opacity:.7;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+  @media(max-width:760px){
+    .hero-stats{position:static; margin-top:3rem; flex-wrap:wrap; gap:1.6rem 2rem;}
+  }
+
+  @keyframes riseIn{
+    from{opacity:0; transform:translateY(18px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero-eyebrow,.hero h1,.hero p.lede,.hero-actions,.hero-stats{animation:none; opacity:1;}
+  }
+
+  .scroll-cue{
+    position:absolute; left:6vw; bottom:2.4rem;
+    color:var(--khaki-light); opacity:.5;
+    font-size:.75rem; letter-spacing:.15em; text-transform:uppercase;
+    display:flex; align-items:center; gap:.6rem;
+  }
+  .scroll-cue::after{
+    content:""; width:1px; height:34px; background:var(--khaki-light);
+    animation:pulseLine 1.8s ease-in-out infinite;
+  }
+  @keyframes pulseLine{0%,100%{opacity:.2;} 50%{opacity:.8;}}
+
+  /* ===== SECTION SHARED ===== */
+  section{padding:7rem 6vw;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:2rem; margin-bottom:3.2rem; flex-wrap:wrap;
+  }
+  .section-head .tag{
+    font-size:.78rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--raw-umber); margin-bottom:.8rem; display:block;
+  }
+  .section-head h2{
+    font-size:clamp(2rem, 4vw, 3.1rem);
+    color:var(--dark-green);
+    line-height:1.05;
+  }
+  .section-head p{
+    max-width:380px;
+    color:var(--cafe-noir);
+    opacity:.75;
+    font-size:.98rem;
+    line-height:1.6;
+  }
+
+  /* ===== ABOUT / STRIP ===== */
+  .about{
+    background:var(--khaki);
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:4rem;
+    align-items:center;
+  }
+  .about-copy p{
+    font-size:1.05rem;
+    line-height:1.75;
+    color:var(--cafe-noir);
+    margin-bottom:1.2rem;
+    opacity:.9;
+  }
+  .about-copy p:first-child{
+    font-family:'Fraunces', serif;
+    font-size:1.5rem;
+    font-weight:500;
+    line-height:1.4;
+    opacity:1;
+  }
+  .about-visual{
+    aspect-ratio:4/5;
+    border-radius:22px;
+    background:
+      linear-gradient(160deg, var(--raw-umber), var(--cafe-noir));
+    position:relative;
+    overflow:hidden;
+    display:flex;align-items:flex-end;
+    padding:2rem;
+  }
+  .about-visual::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(16,40,32,0.8), rgba(16,40,32,0.05) 60%);
+    z-index:1;
+  }
+  .about-visual .about-photo{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    z-index:0;
+  }
+  .about-visual .swatch-row{
+    position:absolute; top:0; left:0; right:0; display:flex; height:8px;
+    z-index:2;
+  }
+  .about-visual .swatch-row div{flex:1;}
+  .about-visual .card-label{
+    position:relative; z-index:2;
+    color:var(--cream); font-family:'Fraunces',serif; font-size:1.3rem;
+  }
+  .about-visual .card-label span{
+    display:block; font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:.8rem; opacity:.75; margin-top:.4rem; font-weight:500;
+  }
+  @media(max-width:860px){
+    .about-grid{grid-template-columns:1fr;}
+    .about-visual{aspect-ratio:16/9;}
+  }
+
+  /* ===== CATALOG ===== */
+  .catalog{background:var(--cream);}
+  .product-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(230px,1fr));
+    gap:1.6rem;
+  }
+  .card{
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid rgba(16,40,32,0.08);
+    transition:transform .3s ease, box-shadow .3s ease;
+    position:relative;
+  }
+  .card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 40px -12px rgba(16,40,32,0.25);
+  }
+  .card-photo{
+    aspect-ratio:1/1;
+    position:relative;
+    background:var(--khaki-light);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .card-photo .slides{
+    display:flex;
+    width:100%; height:100%;
+    transition:transform .35s ease;
+  }
+  .card-photo .slide{
+    flex:0 0 100%;
+    width:100%; height:100%;
+    position:relative;
+  }
+  .card-photo .slide img{
+    width:100%; height:100%; object-fit:cover;
+    position:absolute; inset:0;
+  }
+  .card-photo .placeholder{
+    display:none;
+    flex-direction:column; align-items:center; gap:.5rem;
+    color:var(--hunter-green); opacity:.55; text-align:center; padding:1rem;
+    position:absolute; inset:0;
+    justify-content:center;
+    background:var(--khaki-light);
+  }
+  .card-photo .placeholder .emoji{font-size:2.3rem;}
+  .card-photo .placeholder small{font-size:.68rem; letter-spacing:.03em; font-weight:600;}
+  .card-photo .nav-arrow{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:28px; height:28px;
+    border-radius:50%;
+    border:none;
+    background:rgba(16,40,32,0.55);
+    color:#fff;
+    font-size:.95rem;
+    line-height:1;
+    display:none;
+    align-items:center; justify-content:center;
+    cursor:pointer;
+    z-index:3;
+    transition:background .2s ease;
+  }
+  .card-photo .nav-arrow:hover{background:rgba(16,40,32,0.85);}
+  .card-photo .nav-prev{left:.5rem;}
+  .card-photo .nav-next{right:.5rem;}
+  .card-photo.has-multi .nav-arrow{display:flex;}
+  .card-photo .dots{
+    position:absolute; bottom:.6rem; left:50%; transform:translateX(-50%);
+    display:none; gap:.35rem;
+    z-index:3;
+  }
+  .card-photo.has-multi .dots{display:flex;}
+  .card-photo .dots span{
+    width:6px; height:6px; border-radius:50%;
+    background:rgba(255,255,255,0.55);
+    transition:background .2s ease, transform .2s ease;
+  }
+  .card-photo .dots span.active{background:#fff; transform:scale(1.25);}
+  .price-tag{
+    position:absolute; top:.8rem; right:.8rem;
+    background:var(--raw-umber);
+    color:#fff;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:.85rem;
+    padding:.4rem .8rem;
+    border-radius:8px 8px 8px 2px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.18);
+    transform:rotate(3deg);
+  }
+  .card-body{padding:1.1rem 1.2rem 1.3rem;}
+  .card-body h4{
+    font-family:'Fraunces', serif;
+    font-size:1.15rem;
+    color:var(--dark-green);
+    margin-bottom:.3rem;
+    font-weight:600;
+  }
+  .card-body .desc{
+    font-size:.83rem;
+    color:var(--cafe-noir);
+    opacity:.65;
+    line-height:1.5;
+    margin-bottom:1rem;
+    min-height:2.2em;
+  }
+  .card-footer{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:.8rem;
+    border-top:1px dashed rgba(76,100,68,0.3);
+  }
+  .card-footer .price{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    color:var(--cafe-noir);
+    font-size:1rem;
+  }
+  .card-footer .price small{
+    display:block; font-family:'Plus Jakarta Sans'; font-size:.65rem;
+    font-weight:600; color:var(--hunter-green); text-transform:uppercase; letter-spacing:.05em;
+  }
+
+  /* ===== CTA / CONTACT ===== */
+  .contact{
+    background:var(--dark-green);
+    color:var(--cream);
+    text-align:center;
+    padding:8rem 6vw;
+    position:relative;
+    overflow:hidden;
+  }
+  .contact::before{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(ellipse 700px 400px at 50% 0%, rgba(138,98,64,0.35), transparent 65%);
+  }
+  .contact .tag{
+    font-size:.78rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--raw-umber); display:block; margin-bottom:1.2rem;
+  }
+  .contact h2{
+    font-size:clamp(2.2rem,6vw,4rem);
+    max-width:820px;
+    margin:0 auto 1.6rem;
+    line-height:1.1;
+    color:var(--khaki-light);
+  }
+  .contact p{
+    max-width:520px; margin:0 auto 2.4rem;
+    color:var(--khaki); opacity:.85; font-size:1.02rem; line-height:1.6;
+  }
+  .contact-methods{
+    display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;
+    position:relative; z-index:2;
+  }
+
+  footer{
+    background:var(--cafe-noir);
+    color:var(--khaki-light);
+    padding:3rem 6vw 2.2rem;
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:1.4rem;
+  }
+  footer .logo{font-family:'Fraunces',serif; font-size:1.2rem;}
+  footer small{opacity:.55; font-size:.8rem;}
+  footer .fnote{opacity:.55; font-size:.8rem; max-width:400px; text-align:right;}
+  @media(max-width:700px){footer{flex-direction:column; text-align:center;} footer .fnote{text-align:center;}}
+
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">della <span>muda</span></div>
+  <div class="nav-links">
+    <ul>
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#katalog">Katalog</a></li>
+    </ul>
+  </div>
+  <a href="https://wa.me/6281554658964?text=dellamuda.admin" target="_blank" rel="noopener" class="cta">Pesan Sekarang</a>
+</nav>
+
+<header class="hero">
+  <span class="hero-eyebrow">Camilan Khas Pujon • Diolah Segar dari Kebun</span>
+  <h1>renyah dari<br><em>dapur</em> ke rumahmu</h1>
+  <p class="lede">Della Muda adalah camilan tradisional yang dibuat segar dari bahan pilihan, tanpa pengawet berlebihan. Dari keripik gurih sampai carang mas manis — cocok jadi teman ngobrol atau oleh-oleh.</p>
+  <div class="hero-actions">
+    <a href="#katalog" class="btn-primary">Lihat Katalog →</a>
+    <a href="https://wa.me/6281554658964?text=dellamuda.admin" target="_blank" rel="noopener" class="btn-ghost">Hubungi Kami</a>
+  </div>
+  <div class="hero-stats">
+    <div><div class="num">7</div><div class="label">Varian Rasa</div></div>
+    <div><div class="num">100%</div><div class="label">Digoreng Segar</div></div>
+    <div><div class="num">0</div><div class="label">Pengawet</div></div>
+  </div>
+  <div class="scroll-cue">Scroll</div>
+</header>
+
+<section class="about" id="tentang">
+  <div class="about-grid">
+    <div class="about-copy reveal">
+      <p>Della Muda lahir dari dapur kecil di kaki gunung Pujon — setiap batch digoreng dalam jumlah terbatas, langsung dikemas selagi masih hangat, bukan stok yang menumpuk lama di gudang.</p>
+      <p>Bahan-bahannya kami ambil dari kebun sekitar: kentang, pisang, apel, ubi, dan sayuran segar hasil tani lokal — diolah jadi keripik, carang mas, dan camilan renyah lain yang rasanya jujur, apa adanya.</p>
+      <p>Cari oleh-oleh khas Malang atau stok camilan buat di rumah? Katalog di bawah ini isinya semua favorit yang kami punya.</p>
+    </div>
+    <div class="about-visual reveal">
+      <img class="about-photo" src="foto/kebun-pujon.jpg" alt="Kebun dan pegunungan di Pujon, Malang" onerror="this.style.display='none'">
+      <div class="swatch-row">
+        <div style="background:#102820"></div>
+        <div style="background:#4C6444"></div>
+        <div style="background:#CABA9C"></div>
+        <div style="background:#8A6240"></div>
+        <div style="background:#4D2D18"></div>
+      </div>
+      <div class="card-label">dari kebun Pujon<br>ke wajan panas<span>Diolah fresh setiap hari</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="catalog" id="katalog">
+  <div class="section-head reveal">
+    <div>
+      <span class="tag">Katalog Produk</span>
+      <h2>Pilih camilan favoritmu</h2>
+    </div>
+    <p>Harga per bungkus. Cek varian yang kamu suka, lalu hubungi kami lewat WhatsApp untuk pesan.</p>
+  </div>
+
+  <div class="product-grid">
+
+    <div class="card reveal" data-name="Keripik Kentang">
+      <div class="card-photo" data-emoji="🥔" data-label="FOTO KERIPIK KENTANG">
+        <div class="slides">
+          <div class="slide"><img src="foto/keripik-kentang-1.jpg" alt="Keripik Kentang foto 1"></div>
+          <div class="slide"><img src="foto/keripik-kentang-2.jpg" alt="Keripik Kentang foto 2"></div>
+          <div class="slide"><img src="foto/keripik-kentang-3.jpg" alt="Keripik Kentang foto 3"></div>
+        </div>
+        <div class="placeholder"><span class="emoji">🥔</span><small>FOTO KERIPIK KENTANG</small></div>
+        <button class="nav-arrow nav-prev" aria-label="Foto sebelumnya">‹</button>
+        <button class="nav-arrow nav-next" aria-label="Foto berikutnya">›</button>
+        <div class="dots"></div>
+        <div class="price-tag">20K</div>
+      </div>
+      <div class="card-body">
+        <h4>Keripik Kentang</h4>
+        <div class="desc">Gurih renyah, diiris tipis dan digoreng kering.</div>
+        <div class="card-footer">
+          <div class="price">Rp 20.000<small>per bungkus</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card reveal" data-name="Keripik Pisang">
+      <div class="card-photo" data-emoji="🍌" data-label="FOTO KERIPIK PISANG">
+        <div class="slides">
+          <div class="slide"><img src="foto/keripik-pisang-1.jpg" alt="Keripik Pisang foto 1"></div>
+          <div class="slide"><img src="foto/keripik-pisang-2.jpg" alt="Keripik Pisang foto 2"></div>
+          <div class="slide"><img src="foto/keripik-pisang-3.jpg" alt="Keripik Pisang foto 3"></div>
+        </div>
+        <div class="placeholder"><span class="emoji">🍌</span><small>FOTO KERIPIK PISANG</small></div>
+        <button class="nav-arrow nav-prev" aria-label="Foto sebelumnya">‹</button>
+        <button class="nav-arrow nav-next" aria-label="Foto berikutnya">›</button>
+        <div class="dots"></div>
+        <div class="price-tag">15K</div>
+      </div>
+      <div class="card-body">
+        <h4>Keripik Pisang</h4>
+        <div class="desc">Manis alami, tekstur renyah dari pisang pilihan.</div>
+        <div class="card-footer">
+          <div class="price">Rp 15.000<small>per bungkus</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card reveal" data-name="Carang Mas Apel">
+      <div class="card-photo" data-emoji="🍎" data-label="FOTO CARANG MAS APEL">
+        <div class="slides">
+          <div class="slide"><img src="foto/carang-mas-apel-1.jpg" alt="Carang Mas Apel foto 1"></div>
+          <div class="slide"><img src="foto/carang-mas-apel-2.jpg" alt="Carang Mas Apel foto 2"></div>
+          <div class="slide"><img src="foto/carang-mas-apel-3.jpg" alt="Carang Mas Apel foto 3"></div>
+        </div>
+        <div class="placeholder"><span class="emoji">🍎</span><small>FOTO CARANG MAS APEL</small></div>
+        <button class="nav-arrow nav-prev" aria-label="Foto sebelumnya">‹</button>
+        <button class="nav-arrow nav-next" aria-label="Foto berikutnya">›</button>
+        <div class="dots"></div>
+        <div class="price-tag">17K</div>
+      </div>
+      <div class="card-body">
+        <h4>Carang Mas Apel</h4>
+        <div class="desc">Manis segar apel berpadu gula karamel renyah.</div>
+        <div class="card-footer">
+          <div class="price">Rp 17.000<small>per bungkus</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card reveal" data-name="Carang Mas Ubi">
+      <div class="card-photo" data-emoji="🍠" data-label="FOTO CARANG MAS UBI">
+        <div class="slides">
+          <div class="slide"><img src="foto/carang-mas-ubi-1.jpg" alt="Carang Mas Ubi foto 1"></div>
+          <div class="slide"><img src="foto/carang-mas-ubi-2.jpg" alt="Carang Mas Ubi foto 2"></div>
+          <div class="slide"><img src="foto/carang-mas-ubi-3.jpg" alt="Carang Mas Ubi foto 3"></div>
+        </div>
+        <div class="placeholder"><span class="emoji">🍠</span><small>FOTO CARANG MAS UBI</small></div>
+        <button class="nav-arrow nav-prev" aria-label="Foto sebelumnya">‹</button>
+        <button class="nav-arrow nav-next" aria-label="Foto berikutnya">›</button>
+        <div class="dots"></div>
+        <div class="price-tag">15K</div>
+      </div>
+      <div class="card-body">
+        <h4>Carang Mas Ubi</h4>
+        <div class="desc">Ubi manis berbalut gula, gurih di setiap gigitan.</div>
+        <div class="card-footer">
+          <div class="price">Rp 15.000<small>per bungkus</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card reveal" data-name="Kembang Goyang">
+      <div class="card-photo" data-emoji="🌸" data-label="FOTO KEMBANG GOYANG">
+        <div class="slides">
+          <div class="slide"><img src="foto/kembang-goyang-1.jpg" alt="Kembang Goyang foto 1"></div>
+          <div class="slide"><img src="foto/kembang-goyang-2.jpg" alt="Kembang Goyang foto 2"></div>
+          <div class="slide"><img src="foto/kembang-goyang-3.jpg" alt="Kembang Goyang foto 3"></div>
+        </div>
+        <div class="placeholder"><span class="emoji">🌸</span><small>FOTO KEMBANG GOYANG</small></div>
+        <button class="nav-arrow nav-prev" aria-label="Foto sebelumnya">‹</button>
+        <button class="nav-arrow nav-next" aria-label="Foto berikutnya">›</button>
+        <div class="dots"></div>
+        <div class="price-tag">18K</div>
+      </div>
+      <div class="card-body">
+        <h4>Kembang Goyang</h4>
+        <div class="desc">Kue tradisional berbentuk bunga, renyah dan manis.</div>
+        <div class="card-footer">
+          <div class="price">Rp 18.000<small>per bungkus</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card reveal" data-name="Tak Tak Kres">
+      <div class="card-photo" data-emoji="🌶️" data-label="FOTO TAK TAK KRES">
+        <div class="slides">
+          <div class="slide"><img src="foto/tak-tak-kres-1.jpg" alt="Tak Tak Kres foto 1"></div>
+          <div class="slide"><img src="foto/tak-tak-kres-2.jpg" alt="Tak Tak Kres foto 2"></div>
+          <div class="slide"><img src="foto/tak-tak-kres-3.jpg" alt="Tak Tak Kres foto 3"></div>
+        </div>
+        <div class="placeholder"><span class="emoji">🌶️</span><small>FOTO TAK TAK KRES</small></div>
+        <button class="nav-arrow nav-prev" aria-label="Foto sebelumnya">‹</button>
+        <button class="nav-arrow nav-next" aria-label="Foto berikutnya">›</button>
+        <div class="dots"></div>
+        <div class="price-tag">15K</div>
+      </div>
+      <div class="card-body">
+        <h4>Tak Tak Kres</h4>
+        <div class="desc">Basreng sayur pedas gurih, camilan kekinian favorit.</div>
+        <div class="card-footer">
+          <div class="price">Rp 15.000<small>per bungkus</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card reveal" data-name="Peyek">
+      <div class="card-photo" data-emoji="🥜" data-label="FOTO PEYEK">
+        <div class="slides">
+          <div class="slide"><img src="foto/peyek-1.jpg" alt="Peyek foto 1"></div>
+          <div class="slide"><img src="foto/peyek-2.jpg" alt="Peyek foto 2"></div>
+          <div class="slide"><img src="foto/peyek-3.jpg" alt="Peyek foto 3"></div>
+        </div>
+        <div class="placeholder"><span class="emoji">🥜</span><small>FOTO PEYEK</small></div>
+        <button class="nav-arrow nav-prev" aria-label="Foto sebelumnya">‹</button>
+        <button class="nav-arrow nav-next" aria-label="Foto berikutnya">›</button>
+        <div class="dots"></div>
+        <div class="price-tag">15K</div>
+      </div>
+      <div class="card-body">
+        <h4>Peyek</h4>
+        <div class="desc">Kerupuk kacang tipis renyah, gurih khas rempah rumahan.</div>
+        <div class="card-footer">
+          <div class="price">Rp 15.000<small>per bungkus</small></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="contact" id="kontak">
+  <span class="tag">Pesan Sekarang</span>
+  <h2>Mau pesan berapa bungkus hari ini?</h2>
+  <p>Chat kami langsung lewat WhatsApp, sebutkan varian dan jumlah yang kamu mau.</p>
+  <div class="contact-methods">
+    <a class="btn-primary" href="https://wa.me/6281554658964?text=dellamuda.admin" target="_blank" rel="noopener">Chat WhatsApp</a>
+    <a class="btn-ghost" href="https://www.instagram.com/dellamuda.official_?igsh=emxhOWpkdmRzNTZt" target="_blank" rel="noopener">Instagram</a>
+    <a class="btn-ghost" href="https://maps.app.goo.gl/LP5R3rFpXV3ogmJF6?g_st=ic" target="_blank" rel="noopener">Lokasi Kami</a>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">della muda</div>
+  <div class="fnote">Sobo, Madiredo, Pujon, Malang Regency, East Java 65391</div>
+</footer>
+
+<script>
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  // ===== product photo carousels =====
+  function setupCarousel(container){
+    const slidesTrack = container.querySelector('.slides');
+    const slideEls = Array.from(container.querySelectorAll('.slide'));
+    const imgs = slideEls.map(s => s.querySelector('img'));
+    const placeholder = container.querySelector('.placeholder');
+    const dotsWrap = container.querySelector('.dots');
+    const prevBtn = container.querySelector('.nav-prev');
+    const nextBtn = container.querySelector('.nav-next');
+    const results = new Array(imgs.length).fill(null);
+
+    function finalize(){
+      const workingSlides = slideEls.filter((s,i)=>results[i]===true);
+      slideEls.forEach((s,i)=>{ if(results[i]!==true) s.style.display='none'; });
+
+      if(workingSlides.length === 0){
+        slidesTrack.style.display='none';
+        placeholder.style.display='flex';
+        return;
+      }
+      placeholder.style.display='none';
+
+      let current = 0;
+      const total = workingSlides.length;
+
+      if(total > 1){
+        container.classList.add('has-multi');
+        workingSlides.forEach((_,i)=>{
+          const dot = document.createElement('span');
+          if(i===0) dot.classList.add('active');
+          dot.addEventListener('click', ()=>goTo(i));
+          dotsWrap.appendChild(dot);
+        });
+      }
+
+      function render(){
+        slidesTrack.style.transform = `translateX(-${current*100}%)`;
+        if(dotsWrap){
+          Array.from(dotsWrap.children).forEach((d,i)=>d.classList.toggle('active', i===current));
+        }
+      }
+      function goTo(i){
+        current = (i + total) % total;
+        render();
+      }
+      if(prevBtn) prevBtn.addEventListener('click', ()=>goTo(current-1));
+      if(nextBtn) nextBtn.addEventListener('click', ()=>goTo(current+1));
+
+      // swipe support for touch devices
+      let touchStartX = 0;
+      container.addEventListener('touchstart', e=>{ touchStartX = e.touches[0].clientX; }, {passive:true});
+      container.addEventListener('touchend', e=>{
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if(Math.abs(dx) > 40){ dx > 0 ? goTo(current-1) : goTo(current+1); }
+      }, {passive:true});
+
+      render();
+    }
+
+    imgs.forEach((img, i)=>{
+      function mark(ok){ results[i]=ok; if(results.every(r=>r!==null)) finalize(); }
+      if(img.complete){
+        mark(img.naturalWidth > 0);
+      } else {
+        img.addEventListener('load', ()=>mark(true));
+        img.addEventListener('error', ()=>mark(false));
+      }
+    });
+  }
+
+  document.querySelectorAll('.card-photo').forEach(setupCarousel);
+</script>
+
+</body>
+</html>
