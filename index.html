@@ -222,7 +222,6 @@
       min-height:auto;
       padding:8.5rem 6vw 4rem;
     }
-    .scroll-cue{display:none;}
   }
   @media(max-width:480px){
     header.hero{padding:7.5rem 5vw 3rem;}
@@ -242,18 +241,6 @@
   @media (prefers-reduced-motion: reduce){
     .hero-eyebrow,.hero h1,.hero p.lede,.hero-actions{animation:none; opacity:1;}
   }
-
-  .scroll-cue{
-    position:absolute; left:6vw; bottom:2.4rem;
-    color:var(--khaki-light); opacity:.5;
-    font-size:.75rem; letter-spacing:.15em; text-transform:uppercase;
-    display:flex; align-items:center; gap:.6rem;
-  }
-  .scroll-cue::after{
-    content:""; width:1px; height:34px; background:var(--khaki-light);
-    animation:pulseLine 1.8s ease-in-out infinite;
-  }
-  @keyframes pulseLine{0%,100%{opacity:.2;} 50%{opacity:.8;}}
 
   /* ===== SECTION SHARED ===== */
   section{padding:7rem 6vw;}
@@ -717,7 +704,6 @@
     <a href="#katalog" class="btn-primary">Lihat Katalog →</a>
     <a href="https://wa.me/6281554658964?text=dellamuda.admin" target="_blank" rel="noopener" class="btn-ghost">Hubungi Kami</a>
   </div>
-  <div class="scroll-cue">Scroll</div>
 </header>
 
 <section class="about" id="tentang">
