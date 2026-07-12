@@ -217,31 +217,7 @@
   }
   .btn-ghost:hover{border-color:var(--khaki); background:rgba(202,186,156,0.08);}
 
-  .hero-stats{
-    position:absolute;
-    right:6vw;
-    bottom:3.2rem;
-    display:flex;
-    gap:2.6rem;
-    opacity:0;
-    animation:riseIn .9s .7s ease forwards;
-  }
-  .hero-stats div{text-align:left;}
-  .hero-stats .num{
-    font-family:'Fraunces', serif;
-    font-size:2rem;
-    color:var(--khaki);
-    font-weight:600;
-  }
-  .hero-stats .label{
-    font-size:.75rem;
-    color:var(--khaki-light);
-    opacity:.7;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-  }
   @media(max-width:760px){
-    .hero-stats{position:static; margin-top:3rem; flex-wrap:wrap; gap:1.6rem 2rem;}
     header.hero{
       min-height:auto;
       padding:8.5rem 6vw 4rem;
@@ -264,7 +240,7 @@
     to{opacity:1; transform:translateY(0);}
   }
   @media (prefers-reduced-motion: reduce){
-    .hero-eyebrow,.hero h1,.hero p.lede,.hero-actions,.hero-stats{animation:none; opacity:1;}
+    .hero-eyebrow,.hero h1,.hero p.lede,.hero-actions{animation:none; opacity:1;}
   }
 
   .scroll-cue{
@@ -330,6 +306,35 @@
     font-weight:500;
     line-height:1.4;
     opacity:1;
+  }
+  .value-strip{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.7rem;
+    margin-top:2rem;
+  }
+  .value-item{
+    display:flex;
+    align-items:center;
+    gap:.55rem;
+    background:rgba(76,100,68,0.1);
+    border:1px solid rgba(76,100,68,0.28);
+    padding:.6rem 1.1rem;
+    border-radius:100px;
+    font-size:.82rem;
+    font-weight:600;
+    color:var(--cafe-noir);
+    letter-spacing:.01em;
+    white-space:nowrap;
+  }
+  .value-item .dot{
+    width:7px; height:7px;
+    border-radius:50%;
+    background:var(--raw-umber);
+    flex-shrink:0;
+  }
+  @media(max-width:700px){
+    .value-item{white-space:normal;}
   }
   .about-visual{
     aspect-ratio:4/5;
@@ -494,6 +499,15 @@
   .card-footer .price small{
     display:block; font-family:'Plus Jakarta Sans'; font-size:.65rem;
     font-weight:600; color:var(--hunter-green); text-transform:uppercase; letter-spacing:.05em;
+  }
+  .weight-tag{
+    font-size:.75rem;
+    font-weight:600;
+    color:var(--hunter-green);
+    background:rgba(76,100,68,0.12);
+    padding:.35rem .7rem;
+    border-radius:100px;
+    white-space:nowrap;
   }
 
   /* ===== CATERING ===== */
@@ -697,16 +711,11 @@
 
 <header class="hero">
   <span class="hero-eyebrow">Camilan Khas Pujon • Diolah Segar dari Kebun</span>
-  <h1>renyah dari<br><em>dapur</em> ke rumahmu</h1>
-  <p class="lede">Della Muda adalah camilan tradisional yang dibuat segar dari bahan pilihan, tanpa pengawet berlebihan. Dari keripik gurih sampai carang mas manis — cocok jadi teman ngobrol atau oleh-oleh.</p>
+  <h1>Renyah dari <em>Dapur</em><br>ke Rumah Anda</h1>
+  <p class="lede">Della Muda menghadirkan aneka camilan khas yang diolah dari hasil kebun segar Pujon, Malang. Menggunakan bahan baku pilihan dari petani lokal dan diproses dengan penuh ketelitian, setiap produk menghasilkan cita rasa autentik, renyah, dan cocok dinikmati kapan saja maupun dijadikan oleh-oleh khas Malang.</p>
   <div class="hero-actions">
     <a href="#katalog" class="btn-primary">Lihat Katalog →</a>
     <a href="https://wa.me/6281554658964?text=dellamuda.admin" target="_blank" rel="noopener" class="btn-ghost">Hubungi Kami</a>
-  </div>
-  <div class="hero-stats">
-    <div><div class="num">7</div><div class="label">Varian Rasa</div></div>
-    <div><div class="num">100%</div><div class="label">Digoreng Segar</div></div>
-    <div><div class="num">0</div><div class="label">Pengawet</div></div>
   </div>
   <div class="scroll-cue">Scroll</div>
 </header>
@@ -714,9 +723,14 @@
 <section class="about" id="tentang">
   <div class="about-grid">
     <div class="about-copy reveal">
-      <p>Della Muda lahir dari dapur kecil di kaki gunung Pujon — setiap batch digoreng dalam jumlah terbatas, langsung dikemas selagi masih hangat, bukan stok yang menumpuk lama di gudang.</p>
-      <p>Bahan-bahannya kami ambil dari kebun sekitar: kentang, pisang, apel, ubi, dan sayuran segar hasil tani lokal — diolah jadi keripik, carang mas, dan camilan renyah lain yang rasanya jujur, apa adanya.</p>
-      <p>Cari oleh-oleh khas Malang atau stok camilan buat di rumah? Katalog di bawah ini isinya semua favorit yang kami punya minggu ini.</p>
+      <p>Della Muda merupakan UMKM rumahan yang berlokasi di Pujon, Kabupaten Malang, dan bergerak di bidang pengolahan hasil pertanian lokal menjadi aneka camilan berkualitas. Berawal dari melimpahnya hasil kebun di kawasan Pujon, kami berkomitmen menghadirkan produk yang mampu meningkatkan nilai tambah hasil panen sekaligus memperkenalkan kekayaan pangan lokal kepada masyarakat.</p>
+      <p>Bahan baku seperti kentang, pisang, apel, ubi, dan berbagai hasil kebun lainnya dipilih langsung dari petani sekitar sebelum diolah menjadi keripik, carang mas, serta camilan khas lainnya. Setiap proses produksi dilakukan dengan menjaga kualitas bahan, kebersihan, dan cita rasa sehingga menghasilkan camilan yang renyah, lezat, dan siap dinikmati oleh seluruh keluarga.</p>
+      <p>Baik sebagai teman bersantai maupun oleh-oleh khas Malang, Della Muda menghadirkan produk lokal dengan kualitas yang dapat dipercaya. Jelajahi katalog kami dan temukan berbagai pilihan camilan favorit Anda.</p>
+      <div class="value-strip">
+        <div class="value-item"><span class="dot"></span>Bahan Alami Pilihan</div>
+        <div class="value-item"><span class="dot"></span>Digoreng Segar Setiap Minggu</div>
+        <div class="value-item"><span class="dot"></span>Tanpa Bahan Pengawet</div>
+      </div>
     </div>
     <div class="about-visual reveal">
       <img class="about-photo" src="foto/kebun-pujon.jpg" alt="Kebun dan pegunungan di Pujon, Malang" onerror="this.style.display='none'">
@@ -727,7 +741,7 @@
         <div style="background:#8A6240"></div>
         <div style="background:#4D2D18"></div>
       </div>
-      <div class="card-label">dari kebun Pujon<br>ke wajan panas<span>Dikelilingi kebun dan pegunungan Malang</span></div>
+      <div class="card-label">Dari Kebun Pujon<br>Menjadi Camilan Favorit Anda<span>Menghadirkan olahan hasil bumi lokal dengan kualitas terbaik.</span></div>
     </div>
   </div>
 </section>
@@ -736,9 +750,9 @@
   <div class="section-head reveal">
     <div>
       <span class="tag">Katalog Produk</span>
-      <h2>Pilih camilan favoritmu</h2>
+      <h2>Pilih Camilan Favorit Anda</h2>
     </div>
-    <p>Harga per bungkus. Cek varian yang kamu suka, lalu hubungi kami lewat WhatsApp untuk pesan.</p>
+    <p>Temukan camilan favorit Anda dari berbagai pilihan yang tersedia. Harga yang tercantum merupakan harga per bungkus. Untuk melakukan pemesanan, silakan hubungi kami melalui WhatsApp.</p>
   </div>
 
   <div class="product-grid">
@@ -761,6 +775,7 @@
         <div class="desc">Gurih renyah, diiris tipis dan digoreng kering.</div>
         <div class="card-footer">
           <div class="price">Rp 20.000<small>per bungkus</small></div>
+          <div class="weight-tag">200 gr</div>
         </div>
       </div>
     </div>
@@ -783,6 +798,7 @@
         <div class="desc">Manis alami, tekstur renyah dari pisang pilihan.</div>
         <div class="card-footer">
           <div class="price">Rp 17.000<small>per bungkus</small></div>
+          <div class="weight-tag">250 gr</div>
         </div>
       </div>
     </div>
@@ -805,6 +821,7 @@
         <div class="desc">Manis segar apel berpadu gula karamel renyah.</div>
         <div class="card-footer">
           <div class="price">Rp 17.000<small>per bungkus</small></div>
+          <div class="weight-tag">250 gr</div>
         </div>
       </div>
     </div>
@@ -827,6 +844,7 @@
         <div class="desc">Ubi manis berbalut gula, gurih di setiap gigitan.</div>
         <div class="card-footer">
           <div class="price">Rp 15.000<small>per bungkus</small></div>
+          <div class="weight-tag">250 gr</div>
         </div>
       </div>
     </div>
@@ -849,6 +867,7 @@
         <div class="desc">Kue tradisional berbentuk bunga, renyah dan manis.</div>
         <div class="card-footer">
           <div class="price">Rp 20.000<small>per bungkus</small></div>
+          <div class="weight-tag">250 gr</div>
         </div>
       </div>
     </div>
@@ -871,6 +890,7 @@
         <div class="desc">Basreng sayur pedas gurih, camilan kekinian favorit.</div>
         <div class="card-footer">
           <div class="price">Rp 17.000<small>per bungkus</small></div>
+          <div class="weight-tag">250 gr</div>
         </div>
       </div>
     </div>
@@ -893,6 +913,7 @@
         <div class="desc">Kerupuk kacang tipis renyah, gurih khas rempah rumahan.</div>
         <div class="card-footer">
           <div class="price">Rp 15.000<small>per bungkus</small></div>
+          <div class="weight-tag">250 gr</div>
         </div>
       </div>
     </div>
@@ -904,19 +925,19 @@
   <div class="section-head reveal">
     <div>
       <span class="tag">Layanan Catering</span>
-      <h2>Della Muda juga terima pesanan catering</h2>
+      <h2>Della Muda Juga Menerima Pesanan Catering</h2>
     </div>
-    <p>Buat acara keluarga, kantor, atau hajatan — kami siap bantu urusan konsumsi dari nasi sampai lauk.</p>
+    <p>Untuk acara keluarga, kantor, maupun hajatan, Della Muda siap menjadi mitra kepercayaan Anda dalam memenuhi kebutuhan konsumsi, mulai dari nasi hingga lauk-pauk.</p>
   </div>
 
   <div class="catering-grid">
     <div class="catering-item reveal">
       <h4>Nasi Prasmanan</h4>
-      <p>Menu prasmanan lengkap untuk acara dengan tamu banyak, disajikan siap santap.</p>
+      <p>Menu prasmanan lengkap untuk acara dengan jumlah tamu banyak, disajikan siap santap.</p>
     </div>
     <div class="catering-item reveal">
       <h4>Nasi Kotak</h4>
-      <p>Paket nasi kotak rapi dan praktis, cocok untuk acara kantor atau pengajian.</p>
+      <p>Paket nasi kotak yang rapi dan praktis, cocok untuk acara kantor maupun pengajian.</p>
     </div>
     <div class="catering-item reveal">
       <h4>Nasi Tumpeng</h4>
@@ -924,7 +945,7 @@
     </div>
     <div class="catering-item reveal">
       <h4>Bakso</h4>
-      <p>Bakso hangat untuk melengkapi acara kamu, bisa disesuaikan jumlah porsinya.</p>
+      <p>Bakso hangat untuk melengkapi acara Anda, dengan jumlah porsi yang dapat disesuaikan.</p>
     </div>
   </div>
 
@@ -947,17 +968,17 @@
   </div>
 
   <div class="catering-cta reveal">
-    <a class="btn-primary" href="https://wa.me/6281554658964?text=dellamuda.admin" target="_blank" rel="noopener">Tanya Paket Catering</a>
-    <p>Chat kami untuk info harga, minimal pesanan, dan jadwal ketersediaan.</p>
+    <a class="btn-primary" href="https://wa.me/6281554658964?text=dellamuda.admin" target="_blank" rel="noopener">Tanyakan Paket Catering</a>
+    <p>Hubungi kami untuk informasi harga, minimal pesanan, dan jadwal ketersediaan.</p>
   </div>
 </section>
 
 <section class="contact" id="kontak">
   <span class="tag">Pesan Sekarang</span>
-  <h2>Mau pesan berapa bungkus hari ini?</h2>
-  <p>Chat kami langsung lewat WhatsApp, sebutkan varian dan jumlah yang kamu mau.</p>
+  <h2>Ingin Pesan Berapa Bungkus Hari Ini?</h2>
+  <p>Hubungi kami langsung melalui WhatsApp dan sampaikan varian serta jumlah pesanan yang Anda inginkan.</p>
   <div class="contact-methods">
-    <a class="btn-primary" href="https://wa.me/6281554658964?text=dellamuda.admin" target="_blank" rel="noopener">Chat WhatsApp</a>
+    <a class="btn-primary" href="https://wa.me/6281554658964?text=dellamuda.admin" target="_blank" rel="noopener">Hubungi WhatsApp</a>
     <a class="btn-ghost" href="https://www.instagram.com/dellamuda.official_?igsh=emxhOWpkdmRzNTZt" target="_blank" rel="noopener">Instagram</a>
     <a class="btn-ghost" href="https://maps.app.goo.gl/LP5R3rFpXV3ogmJF6?g_st=ic" target="_blank" rel="noopener">Lokasi Kami</a>
   </div>
