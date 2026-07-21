@@ -666,15 +666,27 @@
     flex-wrap:wrap; gap:1.4rem;
   }
   footer .logo{font-family:'Fraunces',serif; font-size:1.2rem; display:flex; align-items:center; gap:.55rem;}
+  .footer-brand{display:flex; flex-direction:column; gap:.4rem;}
+  .footer-brand .legal-name{
+    font-size:.72rem;
+    letter-spacing:.05em;
+    opacity:.5;
+    padding-left:calc(34px + .55rem);
+  }
   footer small{opacity:.55; font-size:.8rem;}
   footer .fnote{opacity:.55; font-size:.8rem; max-width:400px; text-align:right; line-height:1.6;}
-  @media(max-width:700px){footer{flex-direction:column; text-align:center;} footer .fnote{text-align:center;}}
+  @media(max-width:700px){
+    footer{flex-direction:column; text-align:center;}
+    footer .fnote{text-align:center;}
+    .footer-brand{align-items:center;}
+    .footer-brand .legal-name{padding-left:0;}
+  }
 
   .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
   .reveal.in{opacity:1; transform:translateY(0);}
 
   /* ===== PHOTO POPUP (LIGHTBOX) ===== */
-  .card-photo .slide img, .gallery-photo img{cursor:zoom-in;}
+  .card-photo .slide img, .gallery-photo img, .about-photo{cursor:zoom-in;}
   .lightbox{
     position:fixed; inset:0;
     background:rgba(16,40,32,0.92);
@@ -755,7 +767,7 @@
 </nav>
 
 <header class="hero">
-  <span class="hero-eyebrow">UMKM Pangan Lokal • Berdiri Sejak 2012</span>
+  <span class="hero-eyebrow">UMKM Pangan Lokal • Since 2012</span>
   <h1>Mengangkat <em>Potensi Lokal</em><br>Melalui Inovasi Pangan</h1>
   <p class="lede">Della Muda adalah UMKM yang berlokasi di Pujon, Malang, dan bergerak di bidang produksi pangan lokal. Berawal dari satu jenis produk, kini kami menghadirkan beragam olahan pangan serta layanan katering dengan komitmen terhadap kualitas, inovasi, dan pemberdayaan masyarakat.</p>
   <div class="hero-actions">
@@ -767,7 +779,7 @@
 <section class="about" id="tentang">
   <div class="about-grid">
     <div class="about-copy reveal">
-      <p>Della Muda merupakan UMKM yang berdiri sejak tahun 2012 di Pujon, Kabupaten Malang. Kami mengolah hasil pertanian lokal menjadi berbagai camilan berkualitas dengan mengutamakan bahan baku pilihan, cita rasa autentik, dan proses produksi yang higienis.</p>
+      <p>Della Muda merupakan UMKM yang berdiri sejak tahun 2012 di Pujon, Kabupaten Malang. Kami bergerak di bidang olahan hasil pertanian lokal menjadi berbagai camilan berkualitas dengan mengutamakan bahan baku pilihan, cita rasa autentik, dan proses produksi yang higienis.</p>
       <p>Melalui inovasi produk dan komitmen terhadap kualitas, Della Muda terus menghadirkan camilan khas yang cocok dinikmati sehari-hari maupun dijadikan oleh-oleh khas Malang.</p>
       <div class="value-strip">
         <div class="value-item"><span class="dot"></span>Menggunakan Bahan Alami Pilihan</div>
@@ -776,7 +788,7 @@
       </div>
     </div>
     <div class="about-visual reveal">
-      <img class="about-photo" src="foto/kebun-pujon.jpg" alt="Kebun dan pegunungan di Pujon, Malang" onerror="this.style.display='none'">
+      <img class="about-photo" id="aboutPhoto" src="foto/kebun-pujon.jpg" alt="Kebun dan pegunungan di Pujon, Malang" onerror="this.style.display='none'">
       <div class="swatch-row">
         <div style="background:#102820"></div>
         <div style="background:#4C6444"></div>
@@ -1029,7 +1041,10 @@
 </section>
 
 <footer>
-  <div class="logo"><img src="logo.png" alt="Logo Della Muda" class="logo-mark">della muda</div>
+  <div class="footer-brand">
+    <div class="logo"><img src="logo.png" alt="Logo Della Muda" class="logo-mark">della muda</div>
+    <div class="legal-name">UD. Della Jaya Mandiri</div>
+  </div>
   <div class="fnote">Sobo, Madiredo, Pujon, Malang Regency, East Java 65391<br>dellamudamadiredo@gmail.com</div>
 </footer>
 
@@ -1193,6 +1208,7 @@
   }
   bindGalleryClicks('.card-photo .slide img');
   bindGalleryClicks('.gallery-photo img');
+  bindGalleryClicks('#aboutPhoto');
 
   lightboxClose.addEventListener('click', closeLightbox);
   lightboxPrev.addEventListener('click', showPrev);
