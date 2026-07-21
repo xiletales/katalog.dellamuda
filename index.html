@@ -40,9 +40,14 @@
     position:fixed; top:0; left:0; right:0; z-index:100;
     display:flex; align-items:center; justify-content:space-between;
     padding:20px 6vw;
+    transition:padding .3s ease;
+  }
+  nav::before{
+    content:"";
+    position:absolute; inset:0;
     background:rgba(16,40,32,0.92);
     backdrop-filter:blur(6px);
-    transition:padding .3s ease;
+    z-index:-1;
   }
   nav .logo{
     font-family:'Fraunces', serif;
